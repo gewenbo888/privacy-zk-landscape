@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy &amp; ZK Blockchains · Landscape | 隐私与 ZK 区块链 · 全景图</title>
+
+<!-- SEO · GEO -->
+<meta name="description" content="A bilingual map of 28 privacy-preserving and zero-knowledge blockchain projects — Zcash, Monero, Aleo, Aztec, StarkNet, Polygon zkEVM, Mina, Penumbra, Psy Protocol and more. Categorized by approach: shielded pools, TEE-based, ZK rollups, and sovereign chains.">
+<meta name="keywords" content="privacy blockchain, zero knowledge proofs, ZK rollup, Zcash, Monero, Aleo, Aztec, StarkNet, zkSync, Mina, Polygon zkEVM, Penumbra, Namada, Psy Protocol, 隐私区块链, 零知识证明">
+<meta name="author" content="Gewenbo">
+<link rel="canonical" href="https://privacy.psyverse.fun/">
+<link rel="alternate" hreflang="en" href="https://privacy.psyverse.fun/">
+<link rel="alternate" hreflang="zh-CN" href="https://privacy.psyverse.fun/">
+<link rel="alternate" hreflang="x-default" href="https://privacy.psyverse.fun/">
+<meta property="og:title" content="Privacy &amp; ZK Blockchains · Landscape">
+<meta property="og:description" content="28 projects across 5 categories — shielded-pool L1s, TEE chains, general ZK rollups, privacy L2s, sovereign ZK chains. Bilingual EN/中文.">
+<meta property="og:url" content="https://privacy.psyverse.fun/">
+<meta property="og:site_name" content="Psyverse">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy &amp; ZK Blockchains · Landscape">
+<meta name="twitter:description" content="The 28 projects shaping cryptographic privacy on chains. Bilingual EN/中文.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0d0a14">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Privacy & ZK Blockchains · Landscape",
+  "description": "A bilingual map of 28 privacy-preserving and zero-knowledge blockchain projects.",
+  "url": "https://privacy.psyverse.fun/",
+  "inLanguage": ["en", "zh-CN"],
+  "author": { "@type": "Person", "name": "Gewenbo", "url": "https://psyverse.fun/" },
+  "publisher": { "@type": "Organization", "name": "Psyverse", "url": "https://psyverse.fun/" }
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0a14'/><circle cx='16' cy='16' r='8' fill='none' stroke='%238b5cf6' stroke-width='2'/><circle cx='16' cy='16' r='3' fill='%2306b6d4'/></svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0d0a14;
+  --bg-2: #14101e;
+  --bg-3: #1a1626;
+  --line: #221c33;
+  --line-2: #2d2742;
+  --fg: #e8e3f5;
+  --fg-2: #ada6c4;
+  --fg-3: #6b6485;
+  --cyan: #06b6d4;
+  --violet: #8b5cf6;
+  --green: #84cc16;
+  --rose: #f43f5e;
+  --gold: #fbbf24;
+  --pink: #f472b6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+.serif { font-family: 'Source Serif 4', serif; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(139,92,246,.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139,92,246,.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(139,92,246,.08), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(6,182,212,.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(13,10,20,.78);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+}
+nav .logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--fg);
+  text-decoration: none;
+}
+nav .logo .glyph {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--violet);
+  position: relative;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+nav .logo .glyph::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+nav .links {
+  display: flex; gap: 18px;
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+nav .links a { color: var(--fg-2); text-decoration: none; transition: color .15s; }
+nav .links a:hover { color: var(--cyan); }
+nav .lang {
+  background: transparent; color: var(--fg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all .15s;
+}
+nav .lang:hover { color: var(--violet); border-color: var(--violet); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero */
+.hero { padding: 130px 0 60px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--violet);
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  padding: 6px 14px;
+  margin-bottom: 24px;
+}
+.eyebrow .dot {
+  width: 6px; height: 6px;
+  background: var(--violet);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--violet);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.8); }
+}
+h1 {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(36px, 5.5vw, 60px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin-bottom: 22px;
+  max-width: 22ch;
+}
+h1 .accent {
+  background: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+.lede {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(16px, 1.6vw, 19px);
+  color: var(--fg-2);
+  line-height: 1.55;
+  max-width: 60ch;
+  margin-bottom: 36px;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 36px 0 60px;
+}
+.stat { background: var(--bg-2); padding: 22px 18px; }
+.stat .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--violet);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+.stat .label {
+  font-size: 11px;
+  color: var(--fg-3);
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Taxonomy diagram */
+.taxonomy {
+  margin: 60px 0 80px;
+  padding: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+.taxonomy pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--fg-2);
+  line-height: 1.55;
+  white-space: pre;
+}
+.taxonomy pre .layer { color: var(--violet); font-weight: 600; }
+.taxonomy pre .item { color: var(--fg); }
+.taxonomy pre .me { color: var(--cyan); font-weight: 600; }
+.taxonomy pre .dim { color: var(--fg-3); }
+
+/* Sections */
+section.chap {
+  padding: 60px 0;
+  border-top: 1px solid var(--line);
+}
+.chap-head {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 8px;
+}
+.chap-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+.c1 .chap-num { color: var(--violet); }
+.c2 .chap-num { color: var(--cyan); }
+.c3 .chap-num { color: var(--green); }
+.c4 .chap-num { color: var(--gold); }
+.c5 .chap-num { color: var(--pink); }
+.chap h2 {
+  font-family: 'Source Serif 4', serif;
+  font-size: clamp(24px, 2.6vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.chap-sub {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  margin: 12px 0 32px;
+  max-width: 70ch;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+}
+.proj {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.proj::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.proj:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+  background: var(--bg-3);
+}
+.proj:hover::before { opacity: 1; }
+.c1 .proj { --accent: var(--violet); }
+.c2 .proj { --accent: var(--cyan); }
+.c3 .proj { --accent: var(--green); }
+.c4 .proj { --accent: var(--gold); }
+.c5 .proj { --accent: var(--pink); }
+.proj.featured {
+  border-color: var(--cyan);
+  background: linear-gradient(180deg, rgba(6,182,212,.05), var(--bg-2));
+}
+.proj.featured::before { opacity: 1; background: var(--cyan); }
+.proj-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px;
+}
+.proj-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--fg);
+  letter-spacing: -0.005em;
+}
+.proj-name .feat {
+  font-size: 9px;
+  color: var(--cyan);
+  margin-left: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.08em;
+  vertical-align: middle;
+}
+.proj-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-3);
+  white-space: nowrap;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line-2);
+}
+.proj-status.live { color: var(--green); border-color: rgba(132,204,22,.3); }
+.proj-status.test { color: var(--gold); border-color: rgba(251,191,36,.3); }
+.proj-status.dev  { color: var(--fg-3); }
+.proj-status.sanc { color: var(--rose); border-color: rgba(244,63,94,.3); }
+.proj-tech {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-3);
+}
+.proj-desc {
+  color: var(--fg-2);
+  font-size: 13.5px;
+  line-height: 1.6;
+  flex: 1;
+}
+.proj-foot {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-3);
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.proj-foot .arrow { color: var(--accent); margin-left: auto; }
+
+/* Disclaimer */
+.disclaimer {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--violet);
+  border-radius: 8px;
+  padding: 18px 22px;
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.6;
+  margin: 40px 0 0;
+}
+.disclaimer strong {
+  color: var(--violet);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 56px 0 80px;
+  margin-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 36px;
+}
+.foot-col h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.foot-col a {
+  display: block;
+  color: var(--fg-2);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 8px;
+  transition: color .15s;
+}
+.foot-col a:hover { color: var(--cyan); }
+.foot-col p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13.5px;
+  color: var(--fg-2);
+  line-height: 1.65;
+}
+.foot-bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--fg-3);
+  font-family: 'JetBrains Mono', monospace;
+}
+.foot-bottom a { color: var(--cyan); text-decoration: none; }
+
+/* Bilingual */
+.zh { display: none; }
+body.zh-mode .en { display: none; }
+body.zh-mode .zh { display: revert; }
+body.zh-mode { font-family: 'Noto Sans SC', 'Space Grotesk', sans-serif; }
+body.zh-mode .serif, body.zh-mode .lede, body.zh-mode .chap-sub,
+body.zh-mode .chap h2, body.zh-mode h1, body.zh-mode .foot-col p {
+  font-family: 'Noto Sans SC', 'Source Serif 4', serif;
+}
+body.zh-mode nav, body.zh-mode .mono, body.zh-mode .stat .num, body.zh-mode .stat .label,
+body.zh-mode .eyebrow, body.zh-mode .chap-num, body.zh-mode .proj-status,
+body.zh-mode .proj-tech, body.zh-mode .proj-foot, body.zh-mode .foot-col h4,
+body.zh-mode .foot-bottom, body.zh-mode .taxonomy pre, body.zh-mode .disclaimer strong {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', monospace;
+}
+
+@media (max-width: 768px) {
+  nav .links { display: none; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+  .hero { padding: 100px 0 30px; }
+  .taxonomy pre { font-size: 9.5px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/"><span class="glyph"></span> <span class="en">PRIVACY · ZK · LANDSCAPE</span><span class="zh">隐私 · ZK · 全景图</span></a>
+  <div class="links">
+    <a href="#shielded"><span class="en">Shielded L1</span><span class="zh">隐私 L1</span></a>
+    <a href="#tee"><span class="en">TEE</span><span class="zh">可信执行</span></a>
+    <a href="#rollups"><span class="en">ZK Rollups</span><span class="zh">ZK 卷叠</span></a>
+    <a href="#privacy-l2"><span class="en">Privacy L2</span><span class="zh">隐私 L2</span></a>
+    <a href="#sovereign"><span class="en">Sovereign</span><span class="zh">主权链</span></a>
+  </div>
+  <button class="lang" onclick="document.body.classList.toggle('zh-mode')">EN / 中文</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="dot"></span> <span class="en">Updated April 2026 · 28 projects · 5 categories</span><span class="zh">2026 年 4 月更新 · 28 个项目 · 5 大类</span></div>
+    <h1>
+      <span class="en">The map of <span class="accent">cryptographic privacy</span> on chains.</span>
+      <span class="zh">链上<span class="accent">密码学隐私</span>的全景图。</span>
+    </h1>
+    <p class="lede">
+      <span class="en">Twenty-eight blockchain projects building cryptographic privacy or zero-knowledge verification — from the original UTXO-shielded pools (Zcash, Monero) through TEE-based confidential chains, general-purpose ZK rollups, privacy-on-EVM smart contracts, and sovereign ZK chains. Categorized by approach, not hype.</span>
+      <span class="zh">28 个构建密码学隐私或零知识验证的区块链项目——从最早的 UTXO 屏蔽池（Zcash、Monero），到基于可信执行环境的机密链、通用型 ZK 卷叠、EVM 上的隐私合约，以及主权 ZK 链。按技术路线分类，而非炒作。</span>
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">28</div>
+        <div class="label"><span class="en">Projects mapped</span><span class="zh">收录项目</span></div>
+      </div>
+      <div class="stat">
+        <div class="num">5</div>
+        <div class="label"><span class="en">Approaches</span><span class="zh">技术路线</span></div>
+      </div>
+      <div class="stat">
+        <div class="num">2008→</div>
+        <div class="label"><span class="en">Bitcoin → today</span><span class="zh">从比特币至今</span></div>
+      </div>
+      <div class="stat">
+        <div class="num">~$30B</div>
+        <div class="label"><span class="en">Combined market cap</span><span class="zh">合计市值</span></div>
+      </div>
+    </div>
+
+    <!-- Taxonomy diagram -->
+    <div class="taxonomy">
+<pre><span class="layer">┌─ APPROACH 1 · UTXO SHIELDED POOLS (oldest) ──────────────────┐</span>
+  <span class="item">Zcash</span> <span class="dim">·</span> <span class="item">Monero</span> <span class="dim">·</span> <span class="item">Aleo</span> <span class="dim">·</span> <span class="item">Iron Fish</span> <span class="dim">·</span> <span class="item">Penumbra</span> <span class="dim">·</span> <span class="item">Namada</span>
+<span class="layer">├─ APPROACH 2 · TEE-BASED CONFIDENTIAL CHAINS ────────────────┤</span>
+  <span class="item">Secret Network</span> <span class="dim">·</span> <span class="item">Oasis Sapphire</span> <span class="dim">·</span> <span class="item">Phala Network</span>
+<span class="layer">├─ APPROACH 3 · GENERAL-PURPOSE ZK ROLLUPS ───────────────────┤</span>
+  <span class="item">zkSync Era</span> <span class="dim">·</span> <span class="item">StarkNet</span> <span class="dim">·</span> <span class="item">Polygon zkEVM</span> <span class="dim">·</span> <span class="item">Scroll</span>
+  <span class="item">Linea</span> <span class="dim">·</span> <span class="item">Polygon Miden</span> <span class="dim">·</span> <span class="item">Taiko</span>
+<span class="layer">├─ APPROACH 4 · PRIVACY ON EVM (smart-contract layer) ────────┤</span>
+  <span class="item">Aztec Network</span> <span class="dim">·</span> <span class="item">Railgun</span> <span class="dim">·</span> <span class="item">Nocturne Labs</span>
+<span class="layer">├─ APPROACH 5 · SOVEREIGN / SPECIALIZED ZK CHAINS ────────────┤</span>
+  <span class="item">Mina Protocol</span> <span class="dim">·</span> <span class="item">Manta Network</span> <span class="dim">·</span> <span class="item">Anoma</span> <span class="dim">·</span> <span class="item">Aleph Zero</span>
+  <span class="me">► Psy Protocol (privacy + scale, Plonky2 recursive)</span>
+<span class="layer">└──────────────────────────────────────────────────────────────┘</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 1 · UTXO SHIELDED POOLS -->
+<section class="chap c1" id="shielded">
+  <div class="container">
+    <div class="chap-head">
+      <div class="chap-num">01 / SHIELDED POOLS</div>
+    </div>
+    <h2><span class="en">UTXO Shielded-Pool L1s</span><span class="zh">UTXO 屏蔽池 L1</span></h2>
+    <p class="chap-sub">
+      <span class="en">The original cryptographic-privacy approach. Each transaction commits to a hidden note in a Merkle tree; spending reveals only that <em>some</em> note was nullified, not which. Privacy is the chain's primary purpose — not a feature added later.</span>
+      <span class="zh">最早的密码学隐私路线。每笔交易将一个隐藏的「note」提交到 Merkle 树中；花费时只揭示<em>某个</em> note 被作废，但不揭示是哪一个。隐私即链本身的目的——不是后加上的功能。</span>
+    </p>
+
+    <div class="grid">
+      <a class="proj" href="https://z.cash" target="_blank">
+        <div class="proj-head"><span class="proj-name">Zcash</span><span class="proj-status live">Mainnet 2016</span></div>
+        <div class="proj-tech">zk-SNARKs · Halo 2 · Sapling</div>
+        <p class="proj-desc"><span class="en">The first practical shielded-pool blockchain. Pioneered zk-SNARKs in production. Halo 2 removed trusted setup; Orchard pool replaces older Sprout/Sapling.</span><span class="zh">首个实用化的屏蔽池区块链。在生产环境引入 zk-SNARK。Halo 2 取消可信设置；Orchard 池取代旧的 Sprout/Sapling。</span></p>
+        <div class="proj-foot"><span>Electric Coin Co.</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://www.getmonero.org" target="_blank">
+        <div class="proj-head"><span class="proj-name">Monero</span><span class="proj-status live">Mainnet 2014</span></div>
+        <div class="proj-tech">Ring signatures · RingCT · Stealth addresses</div>
+        <p class="proj-desc"><span class="en">Privacy by default — every transaction shielded, no transparent option. Not ZK in the SNARK sense; uses ring signatures + bulletproofs. Largest pure-privacy network by activity.</span><span class="zh">默认隐私——每笔交易都是屏蔽的，无透明选项。非 SNARK 意义上的 ZK，使用环签名 + Bulletproofs。活跃度最高的纯隐私网络。</span></p>
+        <div class="proj-foot"><span>Community-led</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://aleo.org" target="_blank">
+        <div class="proj-head"><span class="proj-name">Aleo</span><span class="proj-status live">Mainnet 2024</span></div>
+        <div class="proj-tech">snarkVM · Leo language · zkSnarks</div>
+        <p class="proj-desc"><span class="en">Smart-contract L1 where computation is private by default. Custom Leo language compiles to ZK circuits. Browser-side proving for client-held data.</span><span class="zh">智能合约 L1，默认计算私密。自创 Leo 语言编译至 ZK 电路。浏览器端证明，数据保留在客户端。</span></p>
+        <div class="proj-foot"><span>Aleo Systems</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://ironfish.network" target="_blank">
+        <div class="proj-head"><span class="proj-name">Iron Fish</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">Sapling-style · Multi-asset · Universal addresses</div>
+        <p class="proj-desc"><span class="en">Sapling-derived shielded L1 with native multi-asset support. Bridged assets become privacy-preserving wrappers automatically.</span><span class="zh">基于 Sapling 的屏蔽 L1，原生支持多资产。桥接资产自动转换为隐私保护包装。</span></p>
+        <div class="proj-foot"><span>Iron Fish Foundation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://penumbra.zone" target="_blank">
+        <div class="proj-head"><span class="proj-name">Penumbra</span><span class="proj-status live">Mainnet 2024</span></div>
+        <div class="proj-tech">Cosmos SDK · Tendermint · Shielded by default</div>
+        <p class="proj-desc"><span class="en">Cosmos zone where every transaction is shielded — including staking, swaps, and governance. First chain with private DEX on a shielded pool.</span><span class="zh">Cosmos 生态的屏蔽链——质押、兑换、治理皆为隐私交易。首个在屏蔽池上运行隐私 DEX 的链。</span></p>
+        <div class="proj-foot"><span>Penumbra Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://namada.net" target="_blank">
+        <div class="proj-head"><span class="proj-name">Namada</span><span class="proj-status live">Mainnet 2024</span></div>
+        <div class="proj-tech">Multi-asset Shielded Pool · MASP · IBC</div>
+        <p class="proj-desc"><span class="en">Built around the Multi-Asset Shielded Pool — any IBC-bridged asset can be shielded, including ATOM, OSMO, USDC. The first &quot;shielded interchange&quot;.</span><span class="zh">围绕多资产屏蔽池（MASP）构建——任何 IBC 桥接资产均可屏蔽，含 ATOM、OSMO、USDC。首个「屏蔽中转站」。</span></p>
+        <div class="proj-foot"><span>Anoma + Heliax</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · TEE -->
+<section class="chap c2" id="tee">
+  <div class="container">
+    <div class="chap-head">
+      <div class="chap-num">02 / TEE-BASED</div>
+    </div>
+    <h2><span class="en">TEE-Based Confidential Chains</span><span class="zh">基于可信执行环境的机密链</span></h2>
+    <p class="chap-sub">
+      <span class="en">A different bet: instead of cryptography (which is slow), use trusted hardware enclaves (Intel SGX, AMD SEV, ARM TrustZone) to run computation privately. Faster than ZK, but trust shifts from math to chip vendors.</span>
+      <span class="zh">另一种押注：不依赖（较慢的）密码学，转而用可信硬件飞地（Intel SGX、AMD SEV、ARM TrustZone）私密执行计算。比 ZK 更快，但信任从数学转移到芯片厂商。</span>
+    </p>
+
+    <div class="grid">
+      <a class="proj" href="https://scrt.network" target="_blank">
+        <div class="proj-head"><span class="proj-name">Secret Network</span><span class="proj-status live">Mainnet 2020</span></div>
+        <div class="proj-tech">Cosmos SDK · Intel SGX · CosmWasm</div>
+        <p class="proj-desc"><span class="en">First TEE-based confidential smart-contract platform. Encrypted inputs/outputs/state. Used by sealed-bid auctions, private NFT galleries, confidential DeFi pilots.</span><span class="zh">首个基于 TEE 的机密智能合约平台。加密输入/输出/状态。用于密封竞价拍卖、隐私 NFT 画廊、机密 DeFi 试点。</span></p>
+        <div class="proj-foot"><span>Secret Network Foundation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://oasisprotocol.org/sapphire" target="_blank">
+        <div class="proj-head"><span class="proj-name">Oasis Sapphire</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">EVM-compatible · TEE · ParaTime</div>
+        <p class="proj-desc"><span class="en">Confidential EVM ParaTime. Solidity contracts run inside SGX enclaves; storage encrypted at protocol level. Drop-in for existing EVM dApps that want privacy.</span><span class="zh">机密 EVM ParaTime。Solidity 合约在 SGX 飞地内运行；存储在协议层加密。现有 EVM dApp 可直接接入获取隐私。</span></p>
+        <div class="proj-foot"><span>Oasis Foundation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://phala.network" target="_blank">
+        <div class="proj-head"><span class="proj-name">Phala Network</span><span class="proj-status live">Mainnet 2021</span></div>
+        <div class="proj-tech">TEE workers · Polkadot parachain · Phat Contracts</div>
+        <p class="proj-desc"><span class="en">Off-chain TEE worker network executing &quot;Phat Contracts&quot; — confidential off-chain computation with on-chain verifiability. Powers AI inference + Web2 oracle bridges.</span><span class="zh">链下 TEE worker 网络执行「Phat 合约」——机密链下计算 + 链上可验证。驱动 AI 推理与 Web2 预言机桥接。</span></p>
+        <div class="proj-foot"><span>Phala Foundation</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · ZK ROLLUPS -->
+<section class="chap c3" id="rollups">
+  <div class="container">
+    <div class="chap-head">
+      <div class="chap-num">03 / ZK ROLLUPS</div>
+    </div>
+    <h2><span class="en">General-Purpose ZK Rollups</span><span class="zh">通用 ZK 卷叠</span></h2>
+    <p class="chap-sub">
+      <span class="en">ZK used for <em>scaling</em>, not necessarily privacy. Hundreds of L2 transactions get batched into one Ethereum proof. Privacy here is incidental (state on the L2 is still public). The dominant ZK deployment today by transaction volume.</span>
+      <span class="zh">ZK 用于<em>扩容</em>，不一定用于隐私。数百笔 L2 交易批量打包为一份以太坊证明。此处的隐私是附带的（L2 上状态仍公开）。这是当今 ZK 按交易量计算最主要的部署形态。</span>
+    </p>
+
+    <div class="grid">
+      <a class="proj" href="https://zksync.io" target="_blank">
+        <div class="proj-head"><span class="proj-name">zkSync Era</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">Boojum prover · LLVM compiler · zkEVM</div>
+        <p class="proj-desc"><span class="en">Matter Labs' general-purpose zkEVM L2. Custom LLVM compiler (zksolc) supports Solidity + Vyper. Native account abstraction. ZK Stack for application-specific chains.</span><span class="zh">Matter Labs 的通用 zkEVM L2。自研 LLVM 编译器（zksolc）支持 Solidity 与 Vyper。原生账户抽象。ZK Stack 支持应用专属链。</span></p>
+        <div class="proj-foot"><span>Matter Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://www.starknet.io" target="_blank">
+        <div class="proj-head"><span class="proj-name">StarkNet</span><span class="proj-status live">Mainnet 2021</span></div>
+        <div class="proj-tech">STARK · Cairo · Account abstraction</div>
+        <p class="proj-desc"><span class="en">StarkWare's ZK rollup, built on STARKs (no trusted setup, post-quantum-friendly). Cairo language designed for provable computation. Native AA from day one.</span><span class="zh">StarkWare 的 ZK 卷叠，基于 STARK（无可信设置、后量子友好）。Cairo 语言专为可证明计算设计。从第一天就原生支持账户抽象。</span></p>
+        <div class="proj-foot"><span>StarkWare</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://polygon.technology/polygon-zkevm" target="_blank">
+        <div class="proj-head"><span class="proj-name">Polygon zkEVM</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">zkEVM · PIL · Type-2 equivalence</div>
+        <p class="proj-desc"><span class="en">EVM-equivalent ZK rollup. Existing Solidity contracts deploy unchanged. Now part of the broader Polygon AggLayer ecosystem.</span><span class="zh">EVM 等价的 ZK 卷叠。现有 Solidity 合约无需修改即可部署。已并入更广义的 Polygon AggLayer 生态。</span></p>
+        <div class="proj-foot"><span>Polygon Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://scroll.io" target="_blank">
+        <div class="proj-head"><span class="proj-name">Scroll</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">Bytecode-level zkEVM · halo2</div>
+        <p class="proj-desc"><span class="en">Bytecode-equivalent zkEVM (Type 2). Highest fidelity to Ethereum semantics. halo2-based prover. Strong developer-tooling story.</span><span class="zh">字节码等价的 zkEVM（Type 2）。对以太坊语义保真度最高。基于 halo2 的证明器。开发者工具体验完善。</span></p>
+        <div class="proj-foot"><span>Scroll Foundation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://linea.build" target="_blank">
+        <div class="proj-head"><span class="proj-name">Linea</span><span class="proj-status live">Mainnet 2023</span></div>
+        <div class="proj-tech">zkEVM · MetaMask integration</div>
+        <p class="proj-desc"><span class="en">ConsenSys's zkEVM L2. Tight MetaMask + Infura integration; aimed at the existing EVM developer mainstream rather than ZK-native audiences.</span><span class="zh">ConsenSys 的 zkEVM L2。深度集成 MetaMask 与 Infura；面向现有 EVM 开发者主流，而非 ZK 原生受众。</span></p>
+        <div class="proj-foot"><span>ConsenSys</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://polygon.technology/polygon-miden" target="_blank">
+        <div class="proj-head"><span class="proj-name">Polygon Miden</span><span class="proj-status test">Testnet 2025</span></div>
+        <div class="proj-tech">Actor model · Client-side proving · MASM</div>
+        <p class="proj-desc"><span class="en">Miden VM brings client-side proving to a Polygon-aligned L2. Hybrid public/private state via account-and-note model. Closest mainstream chain to Aztec's privacy-by-default ethos.</span><span class="zh">Miden VM 把客户端证明带入 Polygon 阵营的 L2。通过账户-笔记模型实现混合公私状态。最贴近 Aztec「默认隐私」精神的主流链。</span></p>
+        <div class="proj-foot"><span>Polygon Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://taiko.xyz" target="_blank">
+        <div class="proj-head"><span class="proj-name">Taiko</span><span class="proj-status live">Mainnet 2024</span></div>
+        <div class="proj-tech">Type-1 zkEVM · Based rollup · Decentralized proving</div>
+        <p class="proj-desc"><span class="en">Type-1 (fully Ethereum-equivalent) zkEVM. &quot;Based rollup&quot; — sequenced by Ethereum L1 itself, not by a centralized sequencer. Open proving market.</span><span class="zh">Type-1（完全以太坊等价）zkEVM。「基于以太坊」卷叠——由 L1 直接排序，无中心化排序器。开放证明市场。</span></p>
+        <div class="proj-foot"><span>Taiko Labs</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · PRIVACY L2 -->
+<section class="chap c4" id="privacy-l2">
+  <div class="container">
+    <div class="chap-head">
+      <div class="chap-num">04 / PRIVACY L2</div>
+    </div>
+    <h2><span class="en">Privacy on EVM (smart-contract layer)</span><span class="zh">EVM 上的隐私（智能合约层）</span></h2>
+    <p class="chap-sub">
+      <span class="en">Add a privacy layer on top of an existing EVM chain via shielded smart contracts. Not full Layer 1s — they inherit security from Ethereum or other base chains, but contribute the cryptographic privacy logic.</span>
+      <span class="zh">通过屏蔽智能合约在现有 EVM 链之上添加隐私层。并非完整 L1——它们从以太坊或其它基础链继承安全性，但贡献密码学隐私逻辑。</span>
+    </p>
+
+    <div class="grid">
+      <a class="proj" href="https://aztec.network" target="_blank">
+        <div class="proj-head"><span class="proj-name">Aztec Network</span><span class="proj-status test">Public Testnet 2025</span></div>
+        <div class="proj-tech">Noir language · UltraHonk prover · Hybrid public/private state</div>
+        <p class="proj-desc"><span class="en">The most ambitious privacy-first L2. Noir language compiles to ZK circuits. Hybrid model: public state alongside private (per-user) state. Deep collaboration with Ethereum Foundation.</span><span class="zh">最雄心勃勃的隐私优先 L2。Noir 语言编译至 ZK 电路。混合模型：公开状态与（按用户的）私密状态并存。与以太坊基金会深度协作。</span></p>
+        <div class="proj-foot"><span>Aztec Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://railgun.org" target="_blank">
+        <div class="proj-head"><span class="proj-name">Railgun</span><span class="proj-status live">Live Multi-Chain</span></div>
+        <div class="proj-tech">Smart-contract privacy · Multi-chain · Compliance opt-in</div>
+        <p class="proj-desc"><span class="en">A privacy smart-contract system deployed on Ethereum, BSC, Polygon, Arbitrum. ZK-shielded transfers without leaving the host chain. Optional compliance attestations (Privacy Mode + Compliance Mode).</span><span class="zh">部署于以太坊、BSC、Polygon、Arbitrum 的隐私智能合约系统。在宿主链内进行 ZK 屏蔽转账。可选合规凭证（隐私模式 + 合规模式）。</span></p>
+        <div class="proj-foot"><span>Railway DAO</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://nocturnelabs.xyz" target="_blank">
+        <div class="proj-head"><span class="proj-name">Nocturne Labs</span><span class="proj-status dev">Spec / Research</span></div>
+        <div class="proj-tech">Stealth addresses · Account abstraction · ZK-SNARKs</div>
+        <p class="proj-desc"><span class="en">Privacy primitives for Ethereum account abstraction. Designed to give every smart-contract wallet a stealth-address layer with provable spending limits. Open-source research effort.</span><span class="zh">面向以太坊账户抽象的隐私原语。让每个智能合约钱包配备隐身地址层，并附可证明的消费限额。开源研究项目。</span></p>
+        <div class="proj-foot"><span>Nocturne Labs</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · SOVEREIGN -->
+<section class="chap c5" id="sovereign">
+  <div class="container">
+    <div class="chap-head">
+      <div class="chap-num">05 / SOVEREIGN</div>
+    </div>
+    <h2><span class="en">Sovereign &amp; Specialized ZK Chains</span><span class="zh">主权与专精 ZK 链</span></h2>
+    <p class="chap-sub">
+      <span class="en">Independent chains that use ZK for something other than rolling up to Ethereum — succinct verification, cross-chain proofs, intent settlement, or true mass-scale privacy. Each picks a different problem to solve, and a different chain to be sovereign on.</span>
+      <span class="zh">不为「卷叠回以太坊」而使用 ZK 的独立链——目标各异：简洁验证、跨链证明、意图结算、或真正的大规模隐私。每条链解决不同问题，主权各自独立。</span>
+    </p>
+
+    <div class="grid">
+      <a class="proj featured" href="https://psy.psyverse.fun" target="_blank">
+        <div class="proj-head"><span class="proj-name">Psy Protocol <span class="feat">★ FEATURED</span></span><span class="proj-status dev">Active Dev</span></div>
+        <div class="proj-tech">Plonky2 recursive · Browser proving · 128+ realm shards</div>
+        <p class="proj-desc"><span class="en">Privacy-preserving independent chain that scales to millions of users via sharded realms and recursive Plonky2 proofs. Browser-side WebGPU proving lets users hold both their keys and their compute. Bridges to Dogecoin and Solana via ZK light clients.</span><span class="zh">隐私保护独立链，通过分片域与递归 Plonky2 证明扩展至百万用户规模。浏览器端 WebGPU 证明让用户同时持有密钥与算力。通过 ZK 轻客户端桥接 Dogecoin 与 Solana。</span></p>
+        <div class="proj-foot"><span>Psy / QED Protocol</span><span class="arrow">→ psy.psyverse.fun</span></div>
+      </a>
+      <a class="proj" href="https://minaprotocol.com" target="_blank">
+        <div class="proj-head"><span class="proj-name">Mina Protocol</span><span class="proj-status live">Mainnet 2021</span></div>
+        <div class="proj-tech">Pickles · ~22 KB constant size · zkApps in TypeScript</div>
+        <p class="proj-desc"><span class="en">The succinct blockchain. Entire chain state proves to ~22 KB regardless of length, via recursive zk-SNARKs (Pickles). zkApps written in TypeScript (o1js). The most radical answer to &quot;what if the chain proves itself?&quot;</span><span class="zh">极简的区块链。整条链状态通过递归 zk-SNARK（Pickles）压缩为约 22 KB，与链长无关。zkApp 用 TypeScript（o1js）编写。对「链能否自我证明？」最激进的回答。</span></p>
+        <div class="proj-foot"><span>O(1) Labs · Mina Foundation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://manta.network" target="_blank">
+        <div class="proj-head"><span class="proj-name">Manta Network</span><span class="proj-status live">Manta Pacific Mainnet 2024</span></div>
+        <div class="proj-tech">Universal ZK · MantaPay · Polygon CDK rollup</div>
+        <p class="proj-desc"><span class="en">Two-pronged: Manta Pacific is a modular ZK L2 for general dApps; Manta Atlantic is a privacy-focused parachain. Brought zk-SNARK gas fees to a competitive level on EVM.</span><span class="zh">双轨并行：Manta Pacific 是面向通用 dApp 的模块化 ZK L2；Manta Atlantic 是隐私聚焦的平行链。把 zk-SNARK 气费推到 EVM 上具竞争力的水平。</span></p>
+        <div class="proj-foot"><span>Manta Labs</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://anoma.net" target="_blank">
+        <div class="proj-head"><span class="proj-name">Anoma</span><span class="proj-status test">Testnet 2025</span></div>
+        <div class="proj-tech">Intent-centric · Heterogeneous P2P · Shielded by default</div>
+        <p class="proj-desc"><span class="en">Intent-first architecture: users post <em>what</em> they want; solvers compete on <em>how</em>. Native shielded execution. Conceptually the most ambitious rethinking of what a chain even is — closest sibling to Psy's intent-network direction.</span><span class="zh">意图优先架构：用户发布<em>想要什么</em>；求解器竞争<em>如何实现</em>。原生屏蔽执行。在概念上对「链是什么」最激进的重思——与 Psy 意图网络方向最相近的姊妹项目。</span></p>
+        <div class="proj-foot"><span>Heliax</span><span class="arrow">→</span></div>
+      </a>
+      <a class="proj" href="https://alephzero.org" target="_blank">
+        <div class="proj-head"><span class="proj-name">Aleph Zero</span><span class="proj-status live">Mainnet 2021</span></div>
+        <div class="proj-tech">DAG consensus · Liminal privacy layer · Substrate</div>
+        <p class="proj-desc"><span class="en">Substrate-based L1 with sub-second finality (AlephBFT DAG consensus). Liminal is its ZK-SNARK-based privacy layer for shielded transfers. Strong EU-jurisdiction compliance positioning.</span><span class="zh">基于 Substrate 的 L1，亚秒级最终性（AlephBFT DAG 共识）。Liminal 是其基于 zk-SNARK 的隐私转账层。在欧盟合规定位上优势明显。</span></p>
+        <div class="proj-foot"><span>Aleph Zero Foundation</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+
+    <div class="disclaimer">
+      <strong><span class="en">Note</span><span class="zh">说明</span></strong>
+      <span class="en">This landscape is curated, not comprehensive. Categories overlap (Aztec is both shielded-pool and privacy-on-EVM; Penumbra is both shielded-pool and a Cosmos sovereign chain). Statuses are as of April 2026. Inclusion is not endorsement; exclusion is not criticism. Bridge-only privacy mixers (Tornado Cash et al.) and pre-mainnet zkVMs (Risc Zero, SP1, Jolt, Nexus) are deliberately omitted — the focus is settlement chains, not proof systems.</span>
+      <span class="zh">本全景图为精选，并非穷尽。分类有交叠（Aztec 既属屏蔽池也属 EVM 隐私层；Penumbra 既属屏蔽池也是 Cosmos 主权链）。状态截至 2026 年 4 月。收录非推荐，未收录非批评。仅做桥接的隐私混币器（Tornado Cash 等）与未上主网的 zkVM（Risc Zero、SP1、Jolt、Nexus）有意未收录——本图聚焦于结算链，而非证明系统。</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4><span class="en">About</span><span class="zh">关于</span></h4>
+        <p>
+          <span class="en">An independent map of the cryptographic-privacy + zero-knowledge blockchain landscape, drawn by an outside observer. Not affiliated with any of the projects listed; bias is openly toward Psy Protocol, since this map lives within the Psyverse portfolio.</span>
+          <span class="zh">一份由第三方观察者绘制的密码学隐私与零知识区块链全景独立地图。与所列项目均无隶属关系；由于本图收录于 Psyverse 作品集，对 Psy Protocol 的偏向已公开声明。</span>
+        </p>
+      </div>
+      <div class="foot-col">
+        <h4><span class="en">Related</span><span class="zh">相关</span></h4>
+        <a href="https://psy.psyverse.fun">psy.psyverse.fun</a>
+        <a href="https://psy.psyverse.fun/horizon/"><span class="en">Psy as Agent Substrate</span><span class="zh">Psy 作为智能体基质</span></a>
+        <a href="https://psyverse.fun"><span class="en">Psyverse Portfolio</span><span class="zh">Psyverse 作品集</span></a>
+      </div>
+      <div class="foot-col">
+        <h4><span class="en">Categories</span><span class="zh">分类</span></h4>
+        <a href="#shielded"><span class="en">UTXO Shielded Pools</span><span class="zh">UTXO 屏蔽池</span></a>
+        <a href="#tee"><span class="en">TEE-Based</span><span class="zh">可信执行环境</span></a>
+        <a href="#rollups"><span class="en">ZK Rollups</span><span class="zh">ZK 卷叠</span></a>
+        <a href="#privacy-l2"><span class="en">Privacy on EVM</span><span class="zh">EVM 隐私</span></a>
+        <a href="#sovereign"><span class="en">Sovereign Chains</span><span class="zh">主权链</span></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span><span class="en">Part of the</span><span class="zh">收录于</span> <a href="https://psyverse.fun">Psyverse</a> <span class="en">portfolio</span><span class="zh">作品集</span></span>
+      <span class="en">Compiled April 2026 · 28 projects · 5 categories</span>
+      <span class="zh">编纂于 2026 年 4 月 · 28 个项目 · 5 大类</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://analytics-dashboard-two-blue.vercel.app/tracker.js" defer></script>
+</body>
+</html>
